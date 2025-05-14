@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allergy Alert - FlavorFusion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            /* Colors */
+            --primary: #FF6B6B;
+            --primary-dark: #E05555;
+            --primary-light: #FF8E8E;
+            --secondary: #FFA502;
+            --accent: #2ED573;
+            --dark: #2F3542;
+            --darker: #1E1E2C;
+            --light: #F1F2F6;
+            --lighter: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #A4B0BE;
+            --success: #2ED573;
+            --warning: #FFA502;
+            --danger: #FF4757;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+            
+            /* Typography */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-md: 1rem;
+            --text-lg: 1.25rem;
+            --text-xl: 1.5rem;
+            --text-xxl: 2rem;
+            --text-xxxl: 3rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+            
+            /* Borders */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-circle: 50%;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), #25C064);
+            --gradient-dark: linear-gradient(135deg, var(--darker), #2A2A3A);
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--lighter);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button, input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Utility Classes ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+
+        /* ===== Header Styles ===== */
+        .simple-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+        }
+
+        .simple-header nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-md);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-circle span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #ff6b6b, #ffa502);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: var(--space-sm) 0;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition-normal);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .btn-profile, .btn-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            background-color: var(--lighter);
+            transition: var(--transition-normal);
+            position: relative;
+        }
+
+        .btn-profile:hover, .btn-cart:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-circle);
+            font-size: var(--text-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--dark);
+            transition: var(--transition-normal);
+        }
+
+        /* ===== Main Content ===== */
+        .allergy-alert-container {
+            margin-top: 70px;
+            padding: var(--space-xxl) 0;
+        }
+
+        .allergy-hero {
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .allergy-hero h1 {
+            font-size: var(--text-xxxl);
+            margin-bottom: var(--space-md);
+            color: var(--darker);
+            position: relative;
+            display: inline-block;
+        }
+
+        .allergy-hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .allergy-hero p {
+            font-size: var(--text-lg);
+            color: var(--gray);
+            margin-bottom: var(--space-xl);
+        }
+
+        .alert-banner {
+            background-color: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: var(--space-md);
+            margin-bottom: var(--space-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .alert-banner i {
+            color: var(--danger);
+            font-size: var(--text-xl);
+        }
+
+        .allergy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+        }
+
+        .allergy-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            border-top: 4px solid var(--danger);
+        }
+
+        .allergy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .allergy-card h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-md);
+            color: var(--darker);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .allergy-card h3 i {
+            color: var(--danger);
+        }
+
+        .allergy-card p {
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+        }
+
+        .allergy-symptoms {
+            margin-top: var(--space-lg);
+        }
+
+        .allergy-symptoms h4 {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-sm);
+            color: var(--darker);
+        }
+
+        .symptoms-list {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .symptoms-list li {
+            background-color: var(--lighter);
+            color: var(--danger);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+
+        .common-items {
+            margin-top: var(--space-lg);
+        }
+
+        .common-items h4 {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-sm);
+            color: var(--darker);
+        }
+
+        .items-list {
+            list-style-type: disc;
+            padding-left: var(--space-md);
+            color: var(--gray);
+        }
+
+        .items-list li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .prevention-section {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xxl);
+        }
+
+        .prevention-section h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-xl);
+            color: var(--darker);
+            text-align: center;
+            position: relative;
+        }
+
+        .prevention-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .prevention-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            background-color: var(--lighter);
+            transition: var(--transition-normal);
+        }
+
+        .prevention-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .prevention-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(46, 213, 115, 0.1);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            color: var(--success);
+            font-size: var(--text-xl);
+        }
+
+        .prevention-card h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+            color: var(--darker);
+        }
+
+        .prevention-card p {
+            color: var(--gray);
+            font-size: var(--text-sm);
+        }
+
+        .emergency-section {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xxl);
+            border-top: 4px solid var(--danger);
+        }
+
+        .emergency-section h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-xl);
+            color: var(--darker);
+            text-align: center;
+            position: relative;
+        }
+
+        .emergency-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .emergency-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+
+        @media (min-width: 992px) {
+            .emergency-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .emergency-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .step {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background-color: var(--danger);
+            color: var(--white);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+            color: var(--darker);
+        }
+
+        .step-content p {
+            color: var(--gray);
+        }
+
+        .emergency-contacts {
+            background-color: var(--lighter);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .emergency-contacts h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-lg);
+            color: var(--darker);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .emergency-contacts h3 i {
+            color: var(--danger);
+        }
+
+        .contact-list {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-fast);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 71, 87, 0.1);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--danger);
+        }
+
+        .contact-info h4 {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-xs);
+            color: var(--darker);
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            font-size: var(--text-sm);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-dark);
+        }
+
+        .allergy-form {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .allergy-form h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-xl);
+            color: var(--darker);
+            text-align: center;
+            position: relative;
+        }
+
+        .allergy-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+            color: var(--darker);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--light);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition-fast);
+        }
+
+        .checkbox-container:hover {
+            color: var(--primary);
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 24px;
+            width: 24px;
+            background-color: var(--lighter);
+            border: 1px solid var(--light);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .checkbox-container:hover .checkmark {
+            border-color: var(--primary);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 8px;
+            top: 4px;
+            width: 5px;
+            height: 10px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            transition: var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: var(--space-xl) 0;
+                gap: var(--space-lg);
+                clip-path: circle(0px at 90% -10%);
+                transition: var(--transition-normal);
+                z-index: 1000;
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .allergy-hero h1 {
+                font-size: var(--text-xxl);
+            }
+
+            .allergy-hero p {
+                font-size: var(--text-md);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .allergy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .prevention-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .emergency-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="simple-header">
+        <nav>
+            <div class="logo">
+                <div class="logo-circle">
+                    <span>FF</span>
+                </div>
+                <span class="logo-text">FlavorFusion</span>
+            </div>
+    </header>
+
+    <main class="allergy-alert-container">
+        <section class="allergy-hero">
+            <h1>Allergy Alert Information</h1>
+            <p>Your safety is our top priority. Learn about common food allergies, symptoms to watch for, and how we handle allergy requests in our kitchen.</p>
+        </section>
+
+        <div class="alert-banner">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p><strong>Important:</strong> Always inform your server about any food allergies before ordering. While we take precautions, we cannot guarantee a completely allergen-free environment.</p>
+        </div>
+
+        <div class="allergy-grid">
+            <div class="allergy-card">
+                <h3><i class="fas fa-pepper-hot"></i> Peanuts</h3>
+                <p>One of the most common and potentially severe food allergies. Peanuts can cause life-threatening reactions in sensitive individuals.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Hives</li>
+                        <li>Swelling</li>
+                        <li>Difficulty breathing</li>
+                        <li>Anaphylaxis</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Peanuts</h4>
+                    <ul class="items-list">
+                        <li>Peanut butter</li>
+                        <li>Satay sauce</li>
+                        <li>Some baked goods</li>
+                        <li>Asian dishes</li>
+                        <li>Some sauces and dressings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="allergy-card">
+                <h3><i class="fas fa-egg"></i> Eggs</h3>
+                <p>Egg allergies are common in children but may be outgrown. Both the yolk and white can cause reactions.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Skin reactions</li>
+                        <li>Digestive problems</li>
+                        <li>Nasal congestion</li>
+                        <li>Respiratory issues</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Eggs</h4>
+                    <ul class="items-list">
+                        <li>Mayonnaise</li>
+                        <li>Baked goods</li>
+                        <li>Pasta</li>
+                        <li>Some sauces</li>
+                        <li>Breaded foods</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="allergy-card">
+                <h3><i class="fas fa-fish"></i> Fish & Shellfish</h3>
+                <p>Fish and shellfish allergies are often lifelong and can develop in adulthood. Reactions can be severe.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Hives or rash</li>
+                        <li>Swelling of face/lips</li>
+                        <li>Dizziness</li>
+                        <li>Anaphylaxis</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Fish/Shellfish</h4>
+                    <ul class="items-list">
+                        <li>Seafood dishes</li>
+                        <li>Some Asian sauces</li>
+                        <li>Surimi (imitation crab)</li>
+                        <li>Some salad dressings</li>
+                        <li>Fish sauce</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="allergy-card">
+                <h3><i class="fas fa-wheat-alt"></i> Gluten</h3>
+                <p>Gluten intolerance includes celiac disease and non-celiac gluten sensitivity, requiring strict avoidance.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Digestive issues</li>
+                        <li>Headaches</li>
+                        <li>Fatigue</li>
+                        <li>Joint pain</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Gluten</h4>
+                    <ul class="items-list">
+                        <li>Bread and pasta</li>
+                        <li>Beer</li>
+                        <li>Soy sauce</li>
+                        <li>Many processed foods</li>
+                        <li>Some soups and sauces</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="allergy-card">
+                <h3><i class="fas fa-cheese"></i> Dairy</h3>
+                <p>Dairy allergies involve the immune system reacting to milk proteins, different from lactose intolerance.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Hives</li>
+                        <li>Wheezing</li>
+                        <li>Vomiting</li>
+                        <li>Digestive distress</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Dairy</h4>
+                    <ul class="items-list">
+                        <li>Milk, cheese, butter</li>
+                        <li>Cream-based soups</li>
+                        <li>Many baked goods</li>
+                        <li>Some processed meats</li>
+                        <li>Chocolate</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="allergy-card">
+                <h3><i class="fas fa-seedling"></i> Tree Nuts</h3>
+                <p>Includes allergies to almonds, walnuts, cashews, and other tree nuts. Often lifelong and potentially severe.</p>
+                
+                <div class="allergy-symptoms">
+                    <h4>Symptoms</h4>
+                    <ul class="symptoms-list">
+                        <li>Abdominal pain</li>
+                        <li>Difficulty swallowing</li>
+                        <li>Itchy mouth/throat</li>
+                        <li>Anaphylaxis</li>
+                    </ul>
+                </div>
+                
+                <div class="common-items">
+                    <h4>Common Items Containing Tree Nuts</h4>
+                    <ul class="items-list">
+                        <li>Nut butters</li>
+                        <li>Pesto</li>
+                        <li>Some desserts</li>
+                        <li>Some Asian dishes</li>
+                        <li>Some cereals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="prevention-section">
+            <h2>Our Allergy Prevention Measures</h2>
+            <div class="prevention-grid">
+                <div class="prevention-card">
+                    <div class="prevention-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3>Strict Handwashing</h3>
+                    <p>All staff follow rigorous handwashing protocols before handling any food items.</p>
+                </div>
+                <div class="prevention-card">
+                    <div class="prevention-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Dedicated Utensils</h3>
+                    <p>Separate cooking and serving utensils for allergy-sensitive orders.</p>
+                </div>
+                <div class="prevention-card">
+                    <div class="prevention-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Detailed Menus</h3>
+                    <p>Comprehensive ingredient lists available for all menu items upon request.</p>
+                </div>
+                <div class="prevention-card">
+                    <div class="prevention-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Trained Staff</h3>
+                    <p>All employees receive regular allergy awareness training.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="emergency-section">
+            <h2>Emergency Information</h2>
+            <div class="emergency-content">
+                <div class="emergency-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Recognize Symptoms</h3>
+                            <p>Be aware of signs like difficulty breathing, swelling, hives, dizziness, or vomiting after eating.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Use Epinephrine</h3>
+                            <p>If prescribed, use epinephrine auto-injector immediately for severe reactions.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Call Emergency Services</h3>
+                            <p>Even if symptoms improve after epinephrine, emergency care is still needed.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Inform Restaurant Staff</h3>
+                            <p>Let us know immediately so we can assist and prevent further exposure.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="emergency-contacts">
+                    <h3><i class="fas fa-phone-alt"></i> Emergency Contacts</h3>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-ambulance"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Local Emergency</h4>
+                                <p>Dial <a href="tel:911">911</a> (US) or your local emergency number</p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Nearest Hospital</h4>
+                                <p>City General Hospital: <a href="tel:+18005551234">(800) 555-1234</a></p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Food Allergy Support</h4>
+                                <p>Food Allergy Research & Education: <a href="tel:+18009293278">(800) 929-3278</a></p>
+                            </div>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h4>Restaurant Manager</h4>
+                                <p>Immediate assistance: <a href="tel:+18005555678">(800) 555-5678</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="allergy-form">
+            <h2>Notify Us About Your All

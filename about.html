@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About FlavorFusion - Culinary Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            /* Colors */
+            --primary: #FF6B6B;
+            --primary-dark: #E05555;
+            --secondary: #FFA502;
+            --accent: #2ED573;
+            --dark: #2F3542;
+            --darker: #1E1E2C;
+            --light: #F1F2F6;
+            --lighter: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #A4B0BE;
+            --success: #2ED573;
+            --warning: #FFA502;
+            --danger: #FF4757;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+            
+            /* Typography */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-md: 1rem;
+            --text-lg: 1.25rem;
+            --text-xl: 1.5rem;
+            --text-xxl: 2rem;
+            --text-xxxl: 3rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+            
+            /* Borders */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-circle: 50%;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), #25C064);
+            --gradient-dark: linear-gradient(135deg, var(--darker), var(--dark));
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Playfair Display', 'Segoe UI', serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--lighter);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button, input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Utility Classes ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+
+        .quote-mark {
+            font-size: var(--text-xxxl);
+            color: var(--primary);
+            line-height: 0.8;
+            opacity: 0.7;
+            font-family: Georgia, serif;
+        }
+
+        /* ===== Header Styles ===== */
+        .simple-header {
+            background: var(--gradient-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding-bottom: var(--space-xxl);
+        }
+
+        .simple-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .simple-header nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            background-color: rgba(30, 30, 44, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            /* text-transform: uppercase; */
+            letter-spacing: 2px;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-circle span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #ff6b6b, #ffa502);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: var(--space-sm) 0;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition-normal);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        nav {
+            background-color: gray;
+        }
+        .btn-profile, .btn-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            background-color: var(--lighter);
+            transition: var(--transition-normal);
+            position: relative;
+        }
+
+        .simple-header.scrolled .btn-profile, 
+        .simple-header.scrolled .btn-cart {
+            width: 36px;
+            height: 36px;
+            font-size: var(--text-sm);
+        }
+
+        .btn-profile:hover, .btn-cart:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-circle);
+            font-size: var(--text-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: var(--transition-normal);
+        }
+
+        .simple-header.scrolled .cart-count {
+            width: 18px;
+            height: 18px;
+            font-size: 0.6rem;
+            top: -4px;
+            right: -4px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition-normal);
+        }
+
+        /* ===== Hero Section ===== */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: var(--text-xxxl);
+            margin-bottom: var(--space-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: var(--text-xl);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.3s both;
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* ===== Our Story Section ===== */
+        .our-story {
+            padding: var(--space-xxl) 0;
+            background-color: var(--white);
+        }
+
+        .story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            height: 500px;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .story-content {
+            padding: var(--space-lg);
+        }
+
+        .story-content h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-lg);
+            color: var(--primary);
+        }
+
+        .story-content p {
+            margin-bottom: var(--space-md);
+            font-size: var(--text-lg);
+            line-height: 1.8;
+        }
+
+        /* ===== Quote Section ===== */
+        .quote-section {
+            background: var(--gradient-dark);
+            color: var(--white);
+            padding: var(--space-xxl) 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .quote-container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote {
+            font-size: var(--text-xl);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+
+        .quote::before,
+        .quote::after {
+            content: '"';
+            font-size: var(--text-xxxl);
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote::before {
+            top: -40px;
+            left: -30px;
+        }
+
+        .quote::after {
+            bottom: -60px;
+            right: -30px;
+        }
+
+        .quote-author {
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--primary);
+        }
+
+        .quote-author-title {
+            font-size: var(--text-sm);
+            opacity: 0.8;
+        }
+
+        /* ===== Team Section ===== */
+        .team-section {
+            padding: var(--space-xxl) 0;
+            background-color: var(--lighter);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+        }
+
+        .section-header h2 {
+            font-size: var(--text-xxl);
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--text-lg);
+            color: var(--gray);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-xl);
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: var(--space-lg);
+        }
+
+        .team-info h3 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-xs);
+        }
+
+        .team-info p {
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            font-weight: 600;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-circle);
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .team-social a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== Gallery Section ===== */
+        .gallery-section {
+            padding: var(--space-xxl) 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 250px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+            padding: var(--space-md);
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* ===== Testimonials Section ===== */
+        .testimonials-section {
+            padding: var(--space-xxl) 0;
+            background-color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--lighter);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-lg);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 120px;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            line-height: 0;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-content {
+            font-size: var(--text-lg);
+            font-style: italic;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-circle);
+            overflow: hidden;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xs);
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: var(--text-sm);
+        }
+
+        /* ===== Contact Section ===== */
+        .contact-section {
+            padding: var(--space-xxl) 0;
+            background: var(--gradient-dark);
+            color: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .contact-info h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-md);
+            color: var(--primary);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-text h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xs);
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--space-xs);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: var(--space-md);
+            border: 1px solid var(--light);
+            border-radius: var(--radius-md);
+            font-size: var(--text-md);
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255,107,107,0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            padding: var(--space-md) var(--space-lg);
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background-color: var(--darker);
+            color: var(--white);
+            padding: var(--space-xxl) 0 var(--space-xl);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-about p {
+            margin-bottom: var(--space-md);
+            opacity: 0.8;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-lg);
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .footer-links a::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: var(--text-xs);
+            color: var(--primary);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: var(--space-md);
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: var(--space-md);
+            border: none;
+            border-radius: var(--radius-md) 0 0 var(--radius-md);
+            font-size: var(--text-md);
+        }
+
+        .newsletter-btn {
+            padding: 0 var(--space-lg);
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .newsletter-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-xl);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+            font-size: var(--text-sm);
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 1200px) {
+            .story-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-image {
+                order: -1;
+                height: 400px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: var(--space-lg) 0;
+                gap: var(--space-lg);
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: var(--transition-normal);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .about-hero {
+                height: 60vh;
+                min-height: 500px;
+            }
+            
+            .hero-content h1 {
+                font-size: var(--text-xxl);
+            }
+            
+            .hero-content p {
+                font-size: var(--text-lg);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .hero-content h1 {
+                font-size: var(--text-xl);
+            }
+            
+            .hero-content p {
+                font-size: var(--text-md);
+            }
+            
+            .quote {
+                font-size: var(--text-lg);
+            }
+            
+            .testimonial-card {
+                padding: var(--space-lg);
+                margin: var(--space-md);
+            }
+        }
+
+        /* ===== Animation Classes ===== */
+        .animate-delay-1 {
+            animation-delay: 0.2s;
+        }
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+        }
+        .animate-delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <header class="simple-header">
+        <nav>
+            <div class="logo">
+                <div class="logo-circle">
+                    <span>FF</span>
+                </div>
+                <span class="logo-text">FLAVORFUSION</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="special-menu.html">Special Menus</a></li>
+                <li><a href="chef-consultation.html">Chef Consultation</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn-profile"><i class="fas fa-user"></i></a>
+                <a href="order-summary.html" class="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="about-hero">
+        <div class="hero-content container">
+            <h1 class="animate__animated animate__fadeInDown">Our Culinary Journey</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">"Where passion meets perfection on every plate"</p>
+        </div>
+    </section>
+
+    <section class="our-story">
+        <div class="container">
+            <div class="story-container">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Our Restaurant">
+                </div>
+                <div class="story-content">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2010 by Chef Marco Bellini, FlavorFusion began as a small bistro with just 10 tables and a big dream. Today, we've grown into one of the city's most celebrated dining destinations, but our commitment to culinary excellence remains unchanged.</p>
+                    <p>Every dish at FlavorFusion tells a story - of tradition, innovation, and the relentless pursuit of flavor. We source only the finest ingredients, many from local farmers and artisans who share our passion for quality.</p>
+                    <p>As Chef Marco often says, <em>"Great food isn't just about taste - it's about creating memories."</em> This philosophy guides everything we do, from our seasonal menus to our warm, welcoming service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote-container">
+                <div class="quote">
+                    "People who love to eat are always the best people. To cook is to love, and to serve is to nourish both body and soul."
+                </div>
+                <div class="quote-author">
+                    Julia Child
+                    <div class="quote-author-title">Celebrity Chef & Author</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Culinary Artists</h2>
+                <p>Our talented team brings together decades of experience from kitchens around the world</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef Marco Bellini">
+                    </div>
+                    <div class="team-info">
+                        <h3>Marco Bellini</h3>
+                        <p>Executive Chef & Founder</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1601315488950-3b5047998b38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef Sophia Chen">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sophia Chen</h3>
+                        <p>Head Pastry Chef</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef Antoine Dubois">
+                    </div>
+                    <div class="team-info">
+                        <h3>Antoine Dubois</h3>
+                        <p>Sous Chef</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Restaurant Gallery</h2>
+                <p>Take a visual journey through our beautiful space and culinary creations</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Restaurant Interior">
+                    <div class="gallery-caption">
+                        <h3>Elegant Dining Room</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Signature Dish">
+                    <div class="gallery-caption">
+                        <h3>Signature Dish: Truffle Pasta</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Chef at Work">
+                    <div class="gallery-caption">
+                        <h3>Chef Marco in Action</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Dessert Selection">
+                    <div class="gallery-caption">
+                        <h3>Artisanal Desserts</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Guests Say</h2>
+                <p>Hear from those who've experienced the FlavorFusion difference</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The tasting menu at FlavorFusion was one of the most extraordinary culinary experiences of my life. Each course was a masterpiece of flavor and presentation. Chef Marco's passion shines through in every bite."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Food Critic, Gourmet Magazine</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I've dined at restaurants around the world, but FlavorFusion's attention to detail and warm hospitality sets it apart. The wine pairings were exceptional, and the sommelier's knowledge was impressive."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Wine Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Visit Us</h2>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Location</h3>
+                            <p>123 Gourmet Avenue<br>Foodie District, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Reservations</h3>
+                            <p>(212) 555-7890<br>reservations@flavorfusion.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Hours</h3>
+                            <p>Monday - Thursday: 5PM - 10PM<br>
+                            Friday - Saturday: 5PM - 11PM<br>
+                            Sunday: 5PM - 9PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h2>Get In Touch</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="logo">
+                        <div class="logo-circle">
+                            <span>FF</span>
+                        </div>
+                        <span class="logo-text">FlavorFusion</span>
+                    </div>
+                    <p>Where culinary traditions meet innovative flavors to create unforgettable dining experiences.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="special-menu.html">Seasonal Specials</a></li>
+                        <li><a href="chef-consultation.html">Chef's Table</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Press Inquiries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on special events, new menus, and exclusive offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 FlavorFusion. All rights reserved. Crafted with <i class="fas fa-heart" style="color: var(--primary);"></i> for food lovers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.simple-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Testimonial carousel (simplified for this example)
+            let currentTestimonial = 0;
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            
+            function showTestimonial(index) {
+                testimonials.forEach((testimonial, i) => {
+                    testimonial.style.display = i === index ? 'block' : 'none';
+                });
+            }
+            
+            // Auto-rotate testimonials
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+            
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                newsletterForm.reset();
+            });
+            
+            // Gallery hover effect
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.querySelector('.gallery-caption').style.opacity = '1';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.querySelector('.gallery-caption').style.opacity = '0';
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

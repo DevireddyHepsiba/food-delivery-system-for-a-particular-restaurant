@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Menus - FlavorFusion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            /* Colors */
+            --primary: #FF6B6B;
+            --primary-dark: #E05555;
+            --secondary: #FFA502;
+            --accent: #2ED573;
+            --dark: #2F3542;
+            --darker: #1E1E2C;
+            --light: #F1F2F6;
+            --lighter: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #A4B0BE;
+            --success: #2ED573;
+            --warning: #FFA502;
+            --danger: #FF4757;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-xxl: 3rem;
+            
+            /* Typography */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-md: 1rem;
+            --text-lg: 1.25rem;
+            --text-xl: 1.5rem;
+            --text-xxl: 2rem;
+            --text-xxxl: 3rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+            
+            /* Borders */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-circle: 50%;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), #25C064);
+        }
+
+        /* ===== Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--lighter);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button, input, textarea, select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Utility Classes ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+          
+
+        .simple-header {
+            background: var(--gradient-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding-bottom: var(--space-xxl);
+        }
+
+        .simple-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .simple-header nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+            background-color: rgba(30, 30, 44, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-circle span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #ff6b6b, #ffa502);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-xl);
+        }
+
+        .nav-links a {
+            transition: var(--transition-fast);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transition: var(--transition-normal);
+        }
+
+        .simple-header.scrolled .nav-links a.active::after {
+            bottom: -5px;
+            height: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .btn-profile, .btn-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            background-color: var(--lighter);
+            transition: var(--transition-normal);
+            position: relative;
+        }
+
+        .simple-header.scrolled .btn-profile, 
+        .simple-header.scrolled .btn-cart {
+            width: 36px;
+            height: 36px;
+            font-size: var(--text-sm);
+        }
+
+        .btn-profile:hover, .btn-cart:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary);
+            color: var(--white);
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-circle);
+            font-size: var(--text-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: var(--transition-normal);
+        }
+
+        .simple-header.scrolled .cart-count {
+            width: 18px;
+            height: 18px;
+            font-size: 0.6rem;
+            top: -4px;
+            right: -4px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition-normal);
+        }
+
+        /* ===== Hero Section ===== */
+        .special-menu-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: var(--text-xxxl);
+            margin-bottom: var(--space-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: var(--text-xl);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.3s both;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.5rem;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== Category Tabs ===== */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: var(--space-sm) var(--space-lg);
+            border: none;
+            background-color: var(--light);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .category-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .category-tab:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-tab:hover::before {
+            opacity: 1;
+        }
+
+        .category-tab.active {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-tab.active::before {
+            opacity: 1;
+        }
+
+        .category-content {
+            display: none;
+            padding: var(--space-md) 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Festival Calendar ===== */
+        .festival-calendar {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow-md);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .calendar-container {
+            margin-top: var(--space-md);
+        }
+
+        .calendar-month {
+            background-color: var(--lighter);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+        }
+
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .nav-arrow {
+            background: none;
+            border: none;
+            font-size: var(--text-lg);
+            cursor: pointer;
+            color: var(--dark);
+            transition: var(--transition-fast);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-arrow:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: var(--space-sm);
+        }
+
+        .calendar-day {
+            padding: var(--space-xs);
+            text-align: center;
+            border-radius: var(--radius-sm);
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background-color: var(--light);
+        }
+
+        .day-number {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .festival-day {
+            background-color: var(--primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .festival-day::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
+        }
+
+        .festival-info {
+            display: flex;
+            flex-direction: column;
+            font-size: var(--text-xs);
+        }
+
+        .festival-name {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .festival-dishes {
+            font-size: 0.7rem;
+        }
+
+        /* ===== Dish Grid ===== */
+        .dish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-xl);
+            margin-top: var(--space-lg);
+        }
+
+        .dish-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dish-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .dish-card:hover .dish-image img {
+            transform: scale(1.1);
+        }
+
+        .festival-badge,
+        .fasting-badge,
+        .religious-badge,
+        .health-badge {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            background-color: var(--white);
+            color: var(--primary);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            box-shadow: var(--shadow-sm);
+            transform: translateZ(30px);
+            transition: var(--transition-normal);
+            z-index: 2;
+        }
+
+        .dish-card:hover .festival-badge,
+        .dish-card:hover .fasting-badge,
+        .dish-card:hover .religious-badge,
+        .dish-card:hover .health-badge {
+            transform: translateZ(50px) scale(1.05);
+        }
+
+        .fasting-badge {
+            background-color: #4b6cb7;
+            color: var(--white);
+        }
+
+        .religious-badge {
+            background-color: #6a3093;
+            color: var(--white);
+        }
+
+        .health-badge {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .dish-info {
+            padding: var(--space-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .dish-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,1));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .dish-card:hover .dish-info::before {
+            opacity: 1;
+        }
+
+        .dish-info h4 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xs);
+            transition: var(--transition-normal);
+        }
+
+        .dish-card:hover .dish-info h4 {
+            color: var(--primary);
+        }
+
+        .dish-info p {
+            color: var(--gray);
+            margin-bottom: var(--space-sm);
+            font-size: var(--text-sm);
+            transition: var(--transition-normal);
+        }
+
+        .dish-card:hover .dish-info p {
+            color: var(--dark);
+        }
+
+        .dish-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            font-size: var(--text-xs);
+        }
+
+        .dish-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--gray);
+            transition: var(--transition-normal);
+        }
+
+        .dish-card:hover .dish-meta span {
+            color: var(--dark);
+        }
+
+        .dish-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: var(--text-lg);
+            transition: var(--transition-normal);
+        }
+
+        .dish-card:hover .price {
+            transform: scale(1.1);
+        }
+
+        .btn-order {
+            padding: var(--space-sm) var(--space-md);
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-order::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+            pointer-events: none;
+        }
+
+        .btn-order:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ===== Fasting Cards ===== */
+        .fasting-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .fasting-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fasting-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+        }
+
+        .fasting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .fasting-card:hover::before {
+            height: 10px;
+        }
+
+        .fasting-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--lighter);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            transition: var(--transition-normal);
+        }
+
+        .fasting-card:hover .fasting-icon {
+            transform: rotate(15deg) scale(1.1);
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .fasting-card h3 {
+            margin-bottom: var(--space-sm);
+            transition: var(--transition-normal);
+        }
+
+        .fasting-card:hover h3 {
+            color: var(--primary);
+        }
+
+        .fasting-card p {
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+            font-size: var(--text-sm);
+            transition: var(--transition-normal);
+        }
+
+        .fasting-card:hover p {
+            color: var(--dark);
+        }
+
+        .btn-view-menu {
+            padding: var(--space-xs) var(--space-md);
+            background-color: var(--light);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition-normal);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-view-menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+
+        .fasting-card:hover .btn-view-menu {
+            color: var(--white);
+        }
+
+        .fasting-card:hover .btn-view-menu::before {
+            left: 0;
+        }
+
+        /* ===== Religious Filters ===== */
+        .religious-filters,
+        .health-filters {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+
+        .religion-filter,
+        .health-filter {
+            padding: var(--space-xs) var(--space-md);
+            background-color: var(--light);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .religion-filter::before,
+        .health-filter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .religion-filter:hover,
+        .health-filter:hover {
+            color: var(--white);
+        }
+
+        .religion-filter:hover::before,
+        .health-filter:hover::before {
+            opacity: 1;
+        }
+
+        .religion-filter.active,
+        .health-filter.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* ===== Consultation Card ===== */
+        .dietary-consultation {
+            margin: var(--space-xxl) 0;
+        }
+
+        .consultation-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .consultation-content {
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consultation-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,107,0.1) 0%, rgba(255,107,107,0) 70%);
+            z-index: 0;
+        }
+
+        .consultation-content > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .consultation-content h2 {
+            font-size: var(--text-xxl);
+            margin-bottom: var(--space-md);
+        }
+
+        .consultation-content p {
+            margin-bottom: var(--space-xl);
+            color: var(--gray);
+        }
+
+        .btn-consultation {
+            padding: var(--space-md) var(--space-lg);
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            display: inline-block;
+            width: fit-content;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-consultation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0));
+            pointer-events: none;
+        }
+
+        .btn-consultation:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .consultation-image {
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consultation-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,107,107,0.3), rgba(255,107,107,0));
+            z-index: 1;
+        }
+
+        .consultation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .consultation-card:hover .consultation-image img {
+            transform: scale(1.05);
+        }
+
+        /* ===== Floating Action Button ===== */
+        .fab {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: var(--radius-circle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition-normal);
+            animation: pulse 2s infinite;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) translateY(-5px);
+            animation: none;
+        }
+
+        /* ===== Tooltip ===== */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark);
+            color: var(--white);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-fast);
+            margin-bottom: 5px;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .consultation-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .consultation-image {
+                height: 300px;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: var(--space-lg) 0;
+                gap: var(--space-lg);
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: var(--transition-normal);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .special-menu-hero {
+                height: 400px;
+            }
+            
+            .hero-content h1 {
+                font-size: var(--text-xl);
+            }
+            
+            .hero-content p {
+                font-size: var(--text-md);
+            }
+
+            .fab {
+                width: 50px;
+                height: 50px;
+                font-size: var(--text-md);
+                bottom: var(--space-lg);
+                right: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .category-tabs {
+                gap: var(--space-sm);
+            }
+            
+            .category-tab {
+                padding: var(--space-xs) var(--space-md);
+                font-size: var(--text-sm);
+            }
+            
+            .consultation-content {
+                padding: var(--space-lg);
+            }
+            
+            .btn-consultation {
+                width: 100%;
+                text-align: center;
+            }
+
+            .special-menu-hero {
+                height: 350px;
+            }
+
+            .dish-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== Animation Classes ===== */
+       .animate-delay-1 {
+            animation-delay: 0.2s;
+        }
+        .animate-delay-2 {
+            animation-delay: 0.4s;
+        }
+        .animate-delay-3 {
+            animation-delay: 0.6s;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="simple-header">
+        <nav>
+            <div class="logo">
+                <div class="logo-circle">
+                    <span>FF</span>
+                </div>
+                <span class="logo-text">FlavorFusion</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="special-menu.html" class="active">Special Menus</a></li>
+                <li><a href="chef-consultation.html">Chef Consultation</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn-profile tooltip" data-tooltip="Profile"><i class="fas fa-user"></i></a>
+                <a href="order-summary.html" class="btn-cart tooltip" data-tooltip="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="special-menu-hero">
+        <div class="floating-icons">
+            <div class="floating-icon" style="left: 10%; animation-delay: 0s;"><i class="fas fa-utensils"></i></div>
+            <div class="floating-icon" style="left: 20%; animation-delay: 2s;"><i class="fas fa-leaf"></i></div>
+            <div class="floating-icon" style="left: 30%; animation-delay: 4s;"><i class="fas fa-seedling"></i></div>
+            <div class="floating-icon" style="left: 40%; animation-delay: 6s;"><i class="fas fa-fish"></i></div>
+            <div class="floating-icon" style="left: 50%; animation-delay: 8s;"><i class="fas fa-apple-alt"></i></div>
+            <div class="floating-icon" style="left: 60%; animation-delay: 10s;"><i class="fas fa-bread-slice"></i></div>
+            <div class="floating-icon" style="left: 70%; animation-delay: 12s;"><i class="fas fa-cheese"></i></div>
+            <div class="floating-icon" style="left: 80%; animation-delay: 14s;"><i class="fas fa-drumstick-bite"></i></div>
+        </div>
+        <div class="hero-content">
+            <h1>Special Dietary Menus</h1>
+            <p>Celebrating diversity through culinary traditions with carefully crafted meals for every occasion and dietary need</p>
+        </div>
+    </section>
+
+    <section class="special-menu-categories container">
+        <div class="category-tabs">
+            <button class="category-tab active" data-category="festival">
+                <i class="fas fa-calendar-alt"></i> Festival Specials
+            </button>
+            <button class="category-tab" data-category="fasting">
+                <i class="fas fa-pray"></i> Fasting Menus
+            </button>
+            <button class="category-tab" data-category="religious">
+                <i class="fas fa-hands-praying"></i> Religious Dietary
+            </button>
+            <button class="category-tab" data-category="health">
+                <i class="fas fa-heartbeat"></i> Health Diets
+            </button>
+        </div>
+
+        <div class="category-content active" id="festival-content">
+            <div class="festival-calendar">
+                <h3>Current Festival Specials</h3>
+                <div class="calendar-container">
+                    <div class="calendar-month">
+                        <div class="month-header">
+                            <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+                            <h4>December 2023</h4>
+                            <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-grid">
+                           
+                            <div class="calendar-day festival-day">
+                                <span class="day-number">24</span>
+                                <div class="festival-info">
+                                    <span class="festival-name">Christmas Eve</span>
+                                    <span class="festival-dishes">3 Special Dishes</span>
+                                </div>
+                            </div>
+                            <div class="calendar-day festival-day">
+                                <span class="day-number">25</span>
+                                <div class="festival-info">
+                                    <span class="festival-name">Christmas</span>
+                                    <span class="festival-dishes">5 Special Dishes</span>
+                                </div>
+                            </div>
+                            <div class="calendar-day festival-day">
+                                <span class="day-number">31</span>
+                                <div class="festival-info">
+                                    <span class="festival-name">New Year's Eve</span>
+                                    <span class="festival-dishes">4 Special Dishes</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <div class="festival-dishes">
+                <h3>Christmas Specials (Dec 20-27)</h3>
+                <div class="dish-grid">
+                    <div class="dish-card" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Christmas Roast">
+                            <div class="festival-badge">
+                                <i class="fas fa-holly-berry"></i>
+                                <span>Christmas Special</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Festive Herb-Crusted Roast</h4>
+                            <p>Traditional Christmas roast with seasonal herbs and spices</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-leaf"></i> Can be made vegetarian</span>
+                                <span><i class="fas fa-cross"></i> Christian tradition</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹722.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dish-card" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80" alt="Yule Log">
+                            <div class="festival-badge">
+                                <i class="fas fa-holly-berry"></i>
+                                <span>Christmas Special</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Yule Log Dessert</h4>
+                            <p>Chocolate sponge cake rolled with cream, decorated as a log</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-seedling"></i> Vegetarian</span>
+                                <span><i class="fas fa-cross"></i> Christian tradition</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹279.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-content" id="fasting-content">
+            <div class="fasting-types">
+                <div class="fasting-card">
+                    <div class="fasting-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Lenten Fasting</h3>
+                    <p>Orthodox Christian fasting menus with no meat, dairy, or eggs</p>
+                    <a href="#" class="btn-view-menu">View Menu</a>
+                </div>
+                <div class="fasting-card">
+                    <div class="fasting-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Ramadan Iftar</h3>
+                    <p>Traditional meals to break the fast during Ramadan</p>
+                    <a href="#" class="btn-view-menu">View Menu</a>
+                </div>
+                <div class="fasting-card">
+                    <div class="fasting-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Navratri Fasting</h3>
+                    <p>Hindu fasting foods during Navratri festival</p>
+                    <a href="#" class="btn-view-menu" data-modal="modal3">View Menu</a>
+                </div>
+            </div>
+
+            <div class="fasting-dishes">
+                <h3>Lenten Fasting Menu</h3>
+                <div class="dish-grid">
+                    <div class="dish-card" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Lentil Soup">
+                            <div class="fasting-badge">
+                                <i class="fas fa-cross"></i>
+                                <span>Lenten Fasting</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Hearty Lentil Soup</h4>
+                            <p>Protein-rich soup with vegetables, compliant with fasting rules</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-leaf"></i> Vegan</span>
+                                <span><i class="fas fa-cross"></i> Orthodox Christian</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹798.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dish-card" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Grilled Fish">" alt="Grilled Fish">
+                            <div class="fasting-badge">
+                                <i class="fas fa-cross"></i>
+                                <span>Lenten Fasting</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Grilled Fish with Vegetables</h4>
+                            <p>Simple preparation allowed on certain fasting days</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-fish"></i> Pescatarian</span>
+                                <span><i class="fas fa-cross"></i> Orthodox Christian</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹416.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Ramadan Iftar Menu</h3>
+            <div class="dish-grid">
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="Ramadan1.jpg" alt="Lentil Soup">
+                        <div class="fasting-badge">
+                            <i class="fas fa-peace"></i>
+                            <span>Ramadan Iftar</span>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Gulab Jamun</h4>
+                        <p> Soft, syrup-soaked milk dumplings, a classic Iftar dessert cherished for its rich flavor and festive warmth.</p>
+                        <div class="dish-meta">
+                            <span><i class="fas fa-leaf"></i> Sweet</span>
+                            <span><i class="fas fa-peace"></i>  Muslims</span>
+                        </div>
+                        <div class="dish-actions">
+                            <span class="price">₹78.99</span>
+                            <a href="customization.html" class="btn-order">Customize & Order</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="Ramadan2.jpg" alt="Grilled Fish">
+                        <div class="fasting-badge">
+                            <i class="fas fa-peace"></i>
+                            <span>Ramadan Iftar</span>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Sohan halwa</h4>
+                        <p> A rich, nut-studded delicacy with a melt-in-mouth texture, traditionally served during Iftar for its indulgent sweetness and celebratory feel.</p>
+                        <div class="dish-meta">
+                            <span><i class="fas fa-leaf"></i> Sweet</span>
+                            <span><i class="fas fa-peace"></i>  Muslims</span>
+                        </div>
+                        <div class="dish-actions">
+                            <span class="price">₹419.99</span>
+                            <a href="customization.html" class="btn-order">Customize & Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <h3>Navratri Fasting Menu</h3>
+            <div class="dish-grid">
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="Navratri.jpg" alt="Lentil Soup">
+                        <div class="fasting-badge">
+                            <i class="fas fa-om"></i>
+                            <span>Navratri Fasting</span>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Sabudana khichri</h4>
+                        <p>Crisp and wholesome buckwheat pancakes, a sattvic favorite during Navratri, offering nourishment while honoring sacred fasting customs.</p>
+                        <div class="dish-meta">
+                            <span><i class="fas fa-leaf"></i> Vegan</span>
+                            <span><i class="fas fa-om"></i>Hindustan</span>
+                        </div>
+                        <div class="dish-actions">
+                            <span class="price">₹118.99</span>
+                            <a href="customization.html" class="btn-order">Customize & Order</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="Navratri2.jpg" alt="Grilled Fish">
+                        <div class="fasting-badge">
+                            <i class="fas fa-om"></i>
+                            <span>Navratri Fasting</span>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h4>Kuttu Ka Cheela</h4>
+                        <p>Savory pancakes made from buckwheat flour, light and nutritious, perfect for Navratri fasting while honoring traditional Hindu dietary customs.</p>
+                        <div class="dish-meta">
+                            <span><i class="fas fa-leaf"></i> Vegan</span>
+                            <span><i class="fas fa-om"></i>Hindustan</span>
+                        </div>
+                        <div class="dish-actions">
+                            <span class="price">₹79.99</span>
+                            <a href="customization.html" class="btn-order">Customize & Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-content" id="religious-content">
+            <div class="religious-filters">
+                <button class="religion-filter active" data-religion="all">All</button>
+                <button class="religion-filter" data-religion="halal">Halal</button>
+                <button class="religion-filter" data-religion="kosher">Kosher</button>
+                <button class="religion-filter" data-religion="jain">Jain</button>
+                <button class="religion-filter" data-religion="hindu">Hindu</button>
+                <button class="religion-filter" data-religion="sikh">Sikh</button>
+            </div>
+
+            <div class="religious-dishes">
+                <div class="dish-grid">
+                    <div class="dish-card halal" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Halal Chicken">
+                            <div class="religious-badge">
+                                <i class="fas fa-mosque"></i>
+                                <span>Halal Certified</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Halal Chicken Biryani</h4>
+                            <p>Fragrant rice dish with halal-certified chicken and spices</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-mosque"></i> Muslim dietary law</span>
+                                <span><i class="fas fa-certificate"></i> Certified halal</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹174.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dish-card kosher" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kosher Meal">
+                            <div class="religious-badge">
+                                <i class="fas fa-star-of-david"></i>
+                                <span>Kosher Certified</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Kosher Beef Brisket</h4>
+                            <p>Slow-cooked brisket prepared according to kosher guidelines</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-star-of-david"></i> Jewish dietary law</span>
+                                <span><i class="fas fa-certificate"></i> Certified kosher</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹218.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dish-card jain" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80" alt="Jain Thali">
+                            <div class="religious-badge">
+                                <i class="fas fa-om"></i>
+                                <span>Jain Diet</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Jain Thali</h4>
+                            <p>Complete meal without root vegetables, following Jain principles</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-om"></i> Jainism dietary practice</span>
+                                <span><i class="fas fa-seedling"></i> Vegetarian</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹312.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-content" id="health-content">
+            <div class="health-filters">
+                <button class="health-filter active" data-diet="all">All</button>
+                <button class="health-filter" data-diet="keto">Keto</button>
+                <button class="health-filter" data-diet="paleo">Paleo</button>
+                <button class="health-filter" data-diet="low-carb">Low Carb</button>
+                <button class="health-filter" data-diet="diabetic">Diabetic-Friendly</button>
+                <button class="health-filter" data-diet="low-fat">Low Fat</button>
+            </div>
+
+            <div class="health-dishes">
+                <div class="dish-grid">
+                    <div class="dish-card keto" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Keto Meal">
+                            <div class="health-badge">
+                                <i class="fas fa-bacon"></i>
+                                <span>Keto Friendly</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Keto Chicken Alfredo</h4>
+                            <p>Zucchini noodles with creamy alfredo sauce and grilled chicken</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-bacon"></i> <5g net carbs</span>
+                                <span><i class="fas fa-fire"></i> 650 cal</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹236.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dish-card diabetic" data-tilt>
+                        <div class="dish-image">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Diabetic Meal">
+                            <div class="health-badge">
+                                <i class="fas fa-syringe"></i>
+                                <span>Diabetic-Friendly</span>
+                            </div>
+                        </div>
+                        <div class="dish-info">
+                            <h4>Low-GI Salmon Bowl</h4>
+                            <p>Grilled salmon with quinoa and low-glycemic index vegetables</p>
+                            <div class="dish-meta">
+                                <span><i class="fas fa-syringe"></i> <30g carbs</span>
+                                <span><i class="fas fa-fire"></i> 520 cal</span>
+                            </div>
+                            <div class="dish-actions">
+                                <span class="price">₹817.99</span>
+                                <a href="customization.html" class="btn-order">Customize & Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dietary-consultation">
+        <div class="consultation-card">
+            <div class="consultation-content">
+                <h2>Need Help With Dietary Restrictions?</h2>
+                <p>Our chefs can create personalized meals tailored to your specific dietary needs, whether for health, religion, or personal preference.</p>
+                <a href="chef-consultation.html" class="btn-consultation">Chat With a Chef</a>
+            </div>
+            <div class="consultation-image">
+                <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Chef Consultation">
+            </div>
+        </div>
+    </section>
+
+    <div class="fab tooltip" data-tooltip="Quick Order">
+        <i class="fas fa-bolt"></i>
+    </div>
+
+    <footer>
+        <!--Same as index-->
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.simple-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Category tabs functionality
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const categoryContents = document.querySelectorAll('.category-content');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Remove active class from all tabs and contents
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    categoryContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(`${category}-content`).classList.add('active');
+                });
+            });
+            
+            // Religious filter functionality
+            const religionFilters = document.querySelectorAll('.religion-filter');
+            const religiousDishes = document.querySelectorAll('.religious-dishes .dish-card');
+            
+            religionFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const religion = this.getAttribute('data-religion');
+                    
+                    // Update active filter
+                    religionFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter dishes
+                    religiousDishes.forEach(dish => {
+                        if (religion === 'all' || dish.classList.contains(religion)) {
+                            dish.style.display = 'block';
+                        } else {
+                            dish.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Health filter functionality
+            const healthFilters = document.querySelectorAll('.health-filter');
+            const healthDishes = document.querySelectorAll('.health-dishes .dish-card');
+            
+            healthFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const diet = this.getAttribute('data-diet');
+                    
+                    // Update active filter
+                    healthFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter dishes
+                    healthDishes.forEach(dish => {
+                        if (diet === 'all' || dish.classList.contains(diet)) {
+                            dish.style.display = 'block';
+                        } else {
+                            dish.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Initialize tilt effect on dish cards
+            VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+            });
+    
+            // Create floating icons in hero section
+            function createFloatingIcons() {
+                const floatingIcons = document.querySelector('.floating-icons');
+                const icons = [
+                    'fa-utensils', 'fa-leaf', 'fa-seedling', 'fa-fish', 
+                    'fa-apple-alt', 'fa-bread-slice', 'fa-cheese', 'fa-drumstick-bite'
+                ];
+                
+                for (let i = 0; i < 20; i++) {
+                    const icon = document.createElement('div');
+                    icon.className = 'floating-icon';
+                    icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+                    icon.style.left = `${Math.random() * 100}%`;
+                    icon.style.animationDelay = `${Math.random() * 15}s`;
+                    icon.style.animationDuration = `${15 + Math.random() * 10}s`;
+                    floatingIcons.appendChild(icon);
+                }
+            }
+    
+            createFloatingIcons();
+    
+            // Quick order FAB
+            const fab = document.querySelector('.fab');
+            fab.addEventListener('click', function() {
+                alert('Quick order feature coming soon!');
+            });
+    
+            // Calendar data with festivals for each month
+            const festivalData = {
+                0: { // January
+                    name: "January",
+                    festivals: [
+                        { name: "New Year's Day", date: 1, dishes: "3 Special Dishes" },
+                        { name: "Makar Sankranti / Pongal / Lohri", date: [13, 14, 15], dishes: "5 Special Dishes" },
+                        { name: "Republic Day", date: 26, dishes: "4 Special Dishes" },
+                        { name: "Vasant Panchami / Saraswati Puja", date: [28, 29, 30, 31], dishes: "3 Special Dishes" }
+                    ]
+                },
+                1: { // February
+                    name: "February",
+                    festivals: [
+                        { name: "Vasant Panchami", date: [1, 2, 3], dishes: "3 Special Dishes" },
+                        { name: "Maha Shivaratri", date: [18, 19, 20], dishes: "5 Special Dishes" }
+                    ]
+                },
+                2: { // March
+                    name: "March",
+                    festivals: [
+                        { name: "Holi", date: 8, dishes: "6 Special Dishes" },
+                        { name: "International Women's Day", date: 8, dishes: "2 Special Dishes" },
+                        { name: "Ramzan (starts)", date: [22, 23, 24], dishes: "4 Special Dishes" },
+                        { name: "Ugadi / Gudi Padwa / Cheti Chand", date: [25, 26, 27], dishes: "5 Special Dishes" }
+                    ]
+                },
+                3: { // April
+                    name: "April",
+                    festivals: [
+                        { name: "Rama Navami", date: [5, 6, 7], dishes: "4 Special Dishes" },
+                        { name: "Mahavir Jayanti", date: 10, dishes: "3 Special Dishes" },
+                        { name: "Good Friday", date: [14, 15, 16], dishes: "3 Special Dishes" },
+                        { name: "Easter", date: 17, dishes: "5 Special Dishes" },
+                        { name: "Baisakhi / Vishu / Puthandu / Bohag Bihu", date: [13, 14, 15], dishes: "6 Special Dishes" }
+                    ]
+                },
+                4: { // May
+                    name: "May",
+                    festivals: [
+                        { name: "Eid-ul-Fitr (Ramzan Eid)", date: [2, 3, 4], dishes: "7 Special Dishes" },
+                        { name: "Buddha Purnima", date: 15, dishes: "4 Special Dishes" }
+                    ]
+                },
+                5: { // June
+                    name: "June",
+                    festivals: [
+                        { name: "Ganga Dussehra", date: 10, dishes: "3 Special Dishes" },
+                        { name: "Rath Yatra (Puri)", date: [20, 21, 22], dishes: "5 Special Dishes" }
+                    ]
+                },
+                6: { // July
+                    name: "July",
+                    festivals: [
+                        { name: "Guru Purnima", date: 5, dishes: "4 Special Dishes" },
+                        { name: "Bonalu (Telangana)", date: [15, 16, 17], dishes: "5 Special Dishes" },
+                        { name: "Muharram (Islamic New Year)", date: [19, 20, 21], dishes: "4 Special Dishes" }
+                    ]
+                },
+                7: { // August
+                    name: "August",
+                    festivals: [
+                        { name: "Raksha Bandhan", date: 10, dishes: "3 Special Dishes" },
+                        { name: "Independence Day", date: 15, dishes: "5 Special Dishes" },
+                        { name: "Krishna Janmashtami", date: [18, 19, 20], dishes: "6 Special Dishes" },
+                        { name: "Onam", date: [25, 26, 27], dishes: "7 Special Dishes" },
+                        { name: "Parsi New Year (Navroz)", date: 30, dishes: "4 Special Dishes" }
+                    ]
+                },
+                8: { // September
+                    name: "September",
+                    festivals: [
+                        { name: "Ganesh Chaturthi", date: [5, 6, 7], dishes: "6 Special Dishes" },
+                        { name: "Milad-un-Nabi (Prophet's Birthday)", date: [15, 16, 17], dishes: "4 Special Dishes" }
+                    ]
+                },
+                9: { // October
+                    name: "October",
+                    festivals: [
+                        { name: "Gandhi Jayanti", date: 2, dishes: "3 Special Dishes" },
+                        { name: "Durga Puja / Navaratri / Dussehra", date: [10, 11, 12, 13, 14, 15], dishes: "8 Special Dishes" },
+                        { name: "Karva Chauth", date: 20, dishes: "3 Special Dishes" }
+                    ]
+                },
+                10: { // November
+                    name: "November",
+                    festivals: [
+                        { name: "Diwali / Deepavali", date: [12, 13, 14], dishes: "7 Special Dishes" },
+                        { name: "Bhai Dooj / Govardhan Puja / Chhath Puja", date: [15, 16, 17], dishes: "5 Special Dishes" },
+                        { name: "Guru Nanak Jayanti (Gurpurab)", date: 24, dishes: "4 Special Dishes" },
+                        { name: "Children's Day", date: 14, dishes: "3 Special Dishes" }
+                    ]
+                },
+                11: { // December
+                    name: "December",
+                    festivals: [
+                        { name: "Christmas", date: 25, dishes: "5 Special Dishes" },
+                        { name: "New Year's Eve", date: 31, dishes: "4 Special Dishes" }
+                    ]
+                }
+            };
+    
+            // Calendar navigation
+            const prevMonthBtn = document.querySelector('.nav-arrow:first-child');
+            const nextMonthBtn = document.querySelector('.nav-arrow:last-child');
+            const monthTitle = document.querySelector('.month-header h4');
+            const calendarGrid = document.querySelector('.calendar-grid');
+            
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+            
+            function updateCalendar() {
+                // Clear previous calendar
+                calendarGrid.innerHTML = '';
+                
+                // Set month title
+                monthTitle.textContent = `${festivalData[currentMonth].name} ${currentYear}`;
+                
+                // Get all festivals for current month
+                const monthFestivals = festivalData[currentMonth].festivals;
+                
+                if (monthFestivals.length === 0) {
+                    // No festivals this month
+                    const noFestivals = document.createElement('div');
+                    noFestivals.className = 'no-festivals';
+                    noFestivals.textContent = 'No festivals this month';
+                    noFestivals.style.gridColumn = '1 / -1';
+                    noFestivals.style.textAlign = 'center';
+                    noFestivals.style.padding = '20px';
+                    calendarGrid.appendChild(noFestivals);
+                    return;
+                }
+                
+                // Create a map of all festival days with their details
+                const festivalDays = new Map();
+                
+                monthFestivals.forEach(festival => {
+                    if (Array.isArray(festival.date)) {
+                        festival.date.forEach(day => {
+                            if (!festivalDays.has(day)) {
+                                festivalDays.set(day, []);
+                            }
+                            festivalDays.get(day).push(festival);
+                        });
+                    } else {
+                        const day = festival.date;
+                        if (!festivalDays.has(day)) {
+                            festivalDays.set(day, []);
+                        }
+                        festivalDays.get(day).push(festival);
+                    }
+                });
+                
+                // Sort festival days in chronological order
+                const sortedDays = Array.from(festivalDays.keys()).sort((a, b) => a - b);
+                
+                // Create cells for each festival day
+                sortedDays.forEach(day => {
+                    const festivals = festivalDays.get(day);
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day festival-day';
+                    
+                    const dayNumber = document.createElement('span');
+                    dayNumber.className = 'day-number';
+                    dayNumber.textContent = day;
+                    dayElement.appendChild(dayNumber);
+                    
+                    const festivalInfo = document.createElement('div');
+                    festivalInfo.className = 'festival-info';
+                    
+                    // Show first festival (in case of multiple)
+                    const primaryFestival = festivals[0];
+                    const festivalName = document.createElement('span');
+                    festivalName.className = 'festival-name';
+                    festivalName.textContent = primaryFestival.name;
+                    festivalInfo.appendChild(festivalName);
+                    
+                    const festivalDishes = document.createElement('span');
+                    festivalDishes.className = 'festival-dishes';
+                    festivalDishes.textContent = primaryFestival.dishes;
+                    festivalInfo.appendChild(festivalDishes);
+                    
+                    dayElement.appendChild(festivalInfo);
+                    
+                    // Add tooltip for multiple festivals
+                    if (festivals.length > 1) {
+                        dayElement.setAttribute('data-tooltip', festivals.map(f => f.name).join(', '));
+                        dayElement.classList.add('tooltip');
+                    }
+                    
+                    calendarGrid.appendChild(dayElement);
+                });
+            }
+            
+            prevMonthBtn.addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                updateCalendar();
+            });
+            
+            nextMonthBtn.addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                updateCalendar();
+            });
+            
+            // Initialize calendar
+            updateCalendar();
+        });
+    </script>
+</body>
+</html>
